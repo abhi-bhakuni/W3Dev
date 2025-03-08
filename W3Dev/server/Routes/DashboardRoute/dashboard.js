@@ -21,15 +21,13 @@ router.post("/fetch-articles", async (req, res) => {
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify({
-                "q": "Sports Football Articles",
+                "q": prompt,
                 "gl": "in",
                 "tbs": "qdr:w"
             })
         })
 
-        console.log(response.data)
-
-        return res.status(200).json({ data: response.data })
+        return res.status(200).json({ article_data: response.data.organic })
     } catch (e) {
         console.error("Error fetching articles:", error);
         return res.status(400).json({ error: "Server Error on Dashboard while fetching articles" });

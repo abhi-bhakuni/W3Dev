@@ -7,8 +7,7 @@ const dashboardServerURL = axios.create({
 export const dashboardServerAPI = async(dashboardData) => {
     try {
         const apiData = await dashboardServerURL.post("/dashboard/fetch-articles", {query: dashboardData})
-        console.log(apiData.data)
-        return {status: apiData.status, data: apiData.data}
+        return {status: apiData.status, article_data: apiData.data.article_data}
     } catch(e) {
         console.log(`Client Error on Dashboard Server API ${e}`)
         return {status: e.response.status, error: e.response.data.error}
